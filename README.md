@@ -6,11 +6,11 @@ An image viewing website.
 
 Final desktop view:
 
-![desktop](public\assets\images\overveiw\Desktop.png "Desktop Overview")
+![desktop](public\assets\images\overview\Desktop.png "Desktop Overview")
 
 Final mobile view:
 
-![mobile](public\assets\images\overveiw\Mobile.png "Mobile Overview")
+![mobile](public\assets\images\overview\Mobile.png "Mobile Overview")
 
 <h2>APIs</h2>
 
