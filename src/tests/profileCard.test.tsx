@@ -12,9 +12,9 @@ test("Should be true", () => {
  * @description
  * Test to make sure data is received from the API
  */
-test("Should return: 'Jimmy Dean'", () => {
+test("Should return true", () => {
   const component = mount(<ProfileCard username="jimmydean" />);
-  expect(component.find(".name").children()).toBe("Jimmy Dean");
+  expect(component.find("img").props().src?.length).toBeGreaterThan(0);
 });
 
 /**
@@ -22,5 +22,11 @@ test("Should return: 'Jimmy Dean'", () => {
  */
 test("Should return: _blank", () => {
   const component = shallow(<ProfileCard username="jimmdean" />);
-  expect(component.find("a").props()).toHaveAttribute("target", "_blank");
+  expect(
+    component
+      .find("a")
+      .contains(
+        <a href="" className="link" target="_blank" rel="noreferrer"></a>
+      )
+  ).toBeTruthy();
 });
