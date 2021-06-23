@@ -46,10 +46,12 @@
     ]
   },
   "devDependencies": {
+    "@types/axios-mock-adapter": "^1.10.0",
     "@types/enzyme": "^3.10.8",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.2",
+    "axios-mock-adapter": "^1.19.0",
     "enzyme": "^3.11.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
