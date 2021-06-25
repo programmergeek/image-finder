@@ -30,11 +30,14 @@ const ProfileCard: React.FC<Props> = ({ username }: Props) => {
     <div className="profile card">
       <div className="img-stats-links">
         <img src={state.profile_image.large} alt="profile-pic" />
-        <p className="name"> {state.name} </p>
+        <p className="name primary-text"> {state.name} </p>
         <div className="stats">
-          <p className="stat"> {state.followers_count} followers </p>
-          <p className="stat"> {state.total_likes} likes </p>
-          <p className="stat"> {state.total_photos} photos </p>
+          <p className="stat secondary-text">
+            {" "}
+            {state.followers_count} followers{" "}
+          </p>
+          <p className="stat secondary-text"> {state.total_likes} likes </p>
+          <p className="stat secondary-text"> {state.total_photos} photos </p>
         </div>
         <div className="links">
           <a
@@ -57,7 +60,16 @@ const ProfileCard: React.FC<Props> = ({ username }: Props) => {
           ></a>
         </div>
       </div>
-      <div className="bio"></div>
+      <div className="bio">
+        <h3 className="primary-text" id="bio-header">
+          {" "}
+          Bio{" "}
+        </h3>
+        <p className="secondary-text" id="bio">
+          {" "}
+          {state.bio}{" "}
+        </p>
+      </div>
     </div>
   );
 };
