@@ -1,0 +1,65 @@
+.profile{
+    padding-top: 15px;
+}
+
+.img-stats-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name-stats-links{
+    margin-left: 5px;
+    margin-top: 25px;
+}
+
+.user-img{
+    height: 135px;
+    width: 135px;
+    margin-left: 35%;
+    border-radius: 70px;
+}
+
+.stats{
+    display: flex;
+    font-size: 14px;
+    justify-content: center;
+}
+
+.stat{
+    margin-left: 10px;
+}
+
+.bio{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.name{
+    margin: 0;
+}
+
+a{
+    height: 35px;
+    width: 35px;
+    margin-left: 20px;
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+#bio-header{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.icon{
+    height: 30px;
+    width: 30px;
+}

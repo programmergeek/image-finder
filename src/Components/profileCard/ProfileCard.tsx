@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import React, { useState, useEffect } from "react";
 import { getData } from "../";
+import "./ProfileCard.css";
+import Globe from "../../assets/images/icons/globe.png";
+import TwitterIcon from "../../assets/images/icons/twitter.png";
+import InstagramIcon from "../../assets/images/icons/instagram.png";
 
 interface Props {
   username: string;
@@ -29,42 +33,57 @@ const ProfileCard: React.FC<Props> = ({ username }: Props) => {
   return (
     <div className="profile card">
       <div className="img-stats-links">
-        <img src={state.profile_image.large} alt="profile-pic" />
-        <p className="name primary-text"> {state.name} </p>
-        <div className="stats">
-          <p className="stat secondary-text">
-            {" "}
-            {state.followers_count} followers{" "}
-          </p>
-          <p className="stat secondary-text"> {state.total_likes} likes </p>
-          <p className="stat secondary-text"> {state.total_photos} photos </p>
-        </div>
-        <div className="links">
-          <a
-            href={`https://www.twitter.com/${state.twitter_username}`}
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          ></a>
-          <a
-            href={`https://www.instagram.com/${state.instagram_username}`}
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          ></a>
-          <a
-            href={state.portfolio_url}
-            className="link"
-            target="_blank"
-            rel="noreferrer"
-          ></a>
+        <img
+          src={state.profile_image.large}
+          alt="profile-pic"
+          className="user-img"
+        />
+        <div className="name-stats-links">
+          <p className="name primary-text"> {state.name} </p>
+          <div className="stats">
+            <p className="stat secondary-text">
+              {" "}
+              {state.followers_count} followers{" "}
+            </p>
+            <p className="stat secondary-text"> {state.total_likes} likes </p>
+            <p className="stat secondary-text"> {state.total_photos} photos </p>
+          </div>
+          <div className="links">
+            <a
+              href={`https://www.twitter.com/${state.twitter_username}`}
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              <img src={TwitterIcon} alt="twitter" className="icon" />{" "}
+            </a>
+            <a
+              href={`https://www.instagram.com/${state.instagram_username}`}
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              <img src={InstagramIcon} alt="instagram" className="icon" />{" "}
+            </a>
+            <a
+              href={state.portfolio_url}
+              className="link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              <img src={Globe} alt="website" className="icon" />{" "}
+            </a>
+          </div>
         </div>
       </div>
       <div className="bio">
-        <h3 className="primary-text" id="bio-header">
+        <p className="primary-text" id="bio-header">
           {" "}
-          Bio{" "}
-        </h3>
+          Bio:{" "}
+        </p>
         <p className="secondary-text" id="bio">
           {" "}
           {state.bio}{" "}
