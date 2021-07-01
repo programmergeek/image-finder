@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { SearchContext } from "../../App";
+import "./searchBar.css";
 
 export const SearchBar: React.FC = () => {
   const search = useContext(SearchContext);
