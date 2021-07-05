@@ -6,7 +6,7 @@ export const useImageSearch = (
   pageNumber: number
 ): [string[], boolean, boolean] => {
   const [isLoading, setLoading] = useState(true);
-  const [isLastPage, setIsLastPage] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
   const [photos, setPhotos] = useState<string[]>([]);
   const [hasError, setHasError] = useState(false);
 
@@ -36,7 +36,7 @@ export const useImageSearch = (
         //process data
 
         //check if this is the last page
-        if (res.data.total_pages === pageNumber) setIsLastPage(true);
+        if (res.data.total_pages === pageNumber) setHasMore(false);
 
         //update the state
         Object.keys(res.data.results).map((results, key) => {
@@ -54,5 +54,5 @@ export const useImageSearch = (
       });
     return () => cancel();
   }, [searchValue, pageNumber]);
-  return [photos, isLoading, isLastPage];
+  return [photos, isLoading, hasMore];
 };
