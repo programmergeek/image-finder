@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { ImageGrid } from "./Components/imageGrid/ImageGrid";
-import { SearchBar, SearchBarV2 } from "./Components/searchBar/searchBar";
+import { SearchBarV2 } from "./Components/searchBar/searchBar";
 
 interface SearchContextInterface {
   lookFor: string;
