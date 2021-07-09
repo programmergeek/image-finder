@@ -1,17 +1,26 @@
 import { useState, useEffect } from "react";
 import axios, { Canceler } from "axios";
 
-export const useImageSearch = (
-  searchValue: string,
-  pageNumber: number
-): [string[], boolean, boolean] => {
+interface Params {
+  searchValue: string;
+  pageNumber: number;
+  setPageNumber(value: number): void;
+  setPhotos: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
+export const useImageSearch = ({
+  searchValue,
+  pageNumber,
+  setPageNumber,
+  setPhotos,
+}: Params): [boolean, boolean] => {
   const [isLoading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
-  const [photos, setPhotos] = useState<string[]>([]);
-  const [hasError, setHasError] = useState(false);
+  const [, setHasError] = useState(false);
 
   useEffect(() => {
     setPhotos([]);
+    setPageNumber(1);
   }, [searchValue]);
 
   //get data from the api
@@ -39,13 +48,16 @@ export const useImageSearch = (
         if (res.data.total_pages === pageNumber) setHasMore(false);
 
         //update the state
-        Object.keys(res.data.results).map((results, key) => {
-          setPhotos((prev) => {
-            prev.push(res.data.results[key].urls.regular);
-            return Array.from(new Set(prev));
-          });
+        setPhotos((prev) => {
+          return [
+            ...new Set([
+              ...prev,
+              ...Object.keys(res.data.results).map(
+                (results, key) => res.data.results[key].urls.regular
+              ),
+            ]),
+          ];
         });
-        console.log(photos);
         setLoading(false);
       })
       .catch((e) => {
@@ -54,5 +66,5 @@ export const useImageSearch = (
       });
     return () => cancel();
   }, [searchValue, pageNumber]);
-  return [photos, isLoading, hasMore];
+  return [isLoading, hasMore];
 };
