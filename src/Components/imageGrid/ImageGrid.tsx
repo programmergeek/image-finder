@@ -6,18 +6,24 @@ interface Props {
 }
 
 export const ImageGrid: React.FC<Props> = ({ searchValue }: Props) => {
-  const [counter, setCounter] = useState(1);
-  const [images, isLoading, hasMore] = useImageSearch(searchValue, counter);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [isLoading, hasMore] = useImageSearch({
+    searchValue,
+    pageNumber,
+    setPageNumber,
+    setPhotos,
+  });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const observer = useRef<any>();
+  const observer = useRef<IntersectionObserver>();
+
   const lastPhotoRef = useCallback(
     (node) => {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect;
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setCounter((prevValue) => prevValue + 1);
+          setPageNumber((prevValue) => prevValue + 1);
         }
       });
       if (node) observer.current.observe(node);
@@ -27,30 +33,25 @@ export const ImageGrid: React.FC<Props> = ({ searchValue }: Props) => {
 
   return (
     <div>
-      {isLoading
-        ? "Loading..."
-        : images.map((photo, key) => {
-            if (key === images.length - 1) {
-              return (
-                <img
-                  ref={lastPhotoRef}
-                  src={photo}
-                  key={key}
-                  width={350}
-                  style={{ backgroundColor: "blue", margin: 15 }}
-                />
-              );
-            } else {
-              return (
-                <img
-                  src={photo}
-                  key={key}
-                  width={350}
-                  style={{ backgroundColor: "blue", margin: 15 }}
-                />
-              );
-            }
-          })}
+      {photos.map((photo, key) => {
+        if (key === photos.length - 1) {
+          return (
+            <img
+              ref={lastPhotoRef}
+              src={photo}
+              key={photo}
+              width={350}
+              style={{ margin: 15 }}
+            />
+          );
+        } else {
+          return (
+            <img src={photo} key={photo} width={350} style={{ margin: 15 }} />
+          );
+        }
+      })}
+      <div className="secondary-text">{isLoading ? "Loading..." : null}</div>
+      <div className="secondary-text">{hasMore ? null : "End."}</div>
     </div>
   );
 };

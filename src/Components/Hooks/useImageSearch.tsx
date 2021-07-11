@@ -21,6 +21,7 @@ export const useImageSearch = ({
   useEffect(() => {
     setPhotos([]);
     setPageNumber(1);
+    setHasMore(true);
   }, [searchValue]);
 
   //get data from the api
