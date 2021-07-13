@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from "react";
 import { useImageSearch } from "..";
+import "./gridStyle.css";
 
 interface Props {
   searchValue: string;
@@ -32,23 +33,11 @@ export const ImageGrid: React.FC<Props> = ({ searchValue }: Props) => {
   );
 
   return (
-    <div>
+    <div className="container">
       {photos.map((photo, key) => {
-        if (key === photos.length - 1) {
-          return (
-            <img
-              ref={lastPhotoRef}
-              src={photo}
-              key={photo}
-              width={350}
-              style={{ margin: 15 }}
-            />
-          );
-        } else {
-          return (
-            <img src={photo} key={photo} width={350} style={{ margin: 15 }} />
-          );
-        }
+        if (photos.length - 1 === key)
+          return <img ref={lastPhotoRef} src={photo} key={photo} />;
+        else return <img src={photo} key={photo} />;
       })}
       <div className="secondary-text">{isLoading ? "Loading..." : null}</div>
       <div className="secondary-text">{hasMore ? null : "End."}</div>
