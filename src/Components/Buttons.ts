@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const button = styled.button`
-  padding: 12px 16px;
+  padding: 12px 18px;
   font-family: inherit;
   cursor: pointer;
   border-style: none;
@@ -10,14 +10,14 @@ const button = styled.button`
 `;
 
 export const PrimaryButton = styled(button)`
-  colour: white;
+  color: white;
   background: black;
 `;
 
 export const SecondaryButton = styled(button)`
   background: white;
-  colour: black;
-  border: 1px solid black;
+  color: black;
+  border: 2px solid black;
 `;
 
 export const TertiaryButton = styled(button)`
