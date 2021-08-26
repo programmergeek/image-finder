@@ -8,3 +8,8 @@ const button = styled.button`
   border-radius: 5px;
   font-size: 16px;
 `;
+
+export const PrimaryButton = styled(button)`
+  colour: white;
+  background: black;
+`;
