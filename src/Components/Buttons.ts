@@ -24,3 +24,13 @@ export const TertiaryButton = styled(button)`
   background: white;
   color: black;
 `;
+
+export const IconButton = styled(button)`
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  padding-top: 5px;
+  border: 2px solid #bababa;
+  background: white;
+`;
