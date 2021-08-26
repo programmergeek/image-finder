@@ -19,3 +19,8 @@ export const SecondaryButton = styled(button)`
   colour: black;
   border: 1px solid black;
 `;
+
+export const TertiaryButton = styled(button)`
+  background: white;
+  color: black;
+`;
