@@ -5,6 +5,7 @@ import {
   IconButton,
   SecondaryButton,
   TertiaryButton,
+  SearchBar,
 } from "./Components";
 import Search from "./assets/Images/search.png";
 
@@ -17,6 +18,7 @@ const App: React.FC = () => {
       <IconButton>
         <img src={Search} alt="search" height="22" width="22" />
       </IconButton>
+      <SearchBar placeholder="Search..." />
     </div>
   );
 };
