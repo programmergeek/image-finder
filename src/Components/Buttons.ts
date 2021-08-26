@@ -13,3 +13,9 @@ export const PrimaryButton = styled(button)`
   colour: white;
   background: black;
 `;
+
+export const SecondaryButton = styled(button)`
+  background: white;
+  colour: black;
+  border: 1px solid black;
+`;
