@@ -18,6 +18,7 @@ export const SecondaryButton = styled(button)`
   background: white;
   color: black;
   border: 2px solid black;
+  padding: 10px 18px;
 `;
 
 export const TertiaryButton = styled(button)`
