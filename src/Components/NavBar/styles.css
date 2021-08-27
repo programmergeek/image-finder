@@ -17,4 +17,8 @@
   margin-right: 20px;
 }
 
+#nav-search:focus {
+  outline: none;
+}
+
 /*# sourceMappingURL=styles.css.map */

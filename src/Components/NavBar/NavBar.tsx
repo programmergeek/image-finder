@@ -18,7 +18,7 @@ export const NavBar: React.FC = () => {
         <TertiaryButton>Discover</TertiaryButton>
       </div>
       <div id="search-bar">
-        <SearchBar placeholder="Search..." />
+        <SearchBar id="nav-search" placeholder="Search..." />
         <IconButton id="search-button">
           {" "}
           <img src={search} alt="" height="20px" width="20px" />{" "}
