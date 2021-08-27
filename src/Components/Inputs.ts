@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const SearchBar = styled.input`
   height: 50px;
-  width: 450px;
+  width: 60%;
   font-family: inherit;
   padding-left: 25px;
   border-radius: 50px;
