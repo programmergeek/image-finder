@@ -21,4 +21,32 @@
   outline: none;
 }
 
+@media screen and (max-width: 500px) {
+  #nav-bar {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+  }
+
+  #page-button {
+    display: none;
+  }
+
+  #nav-search {
+    width: 72.5vw;
+    margin-left: 10%;
+  }
+
+  #search-button {
+    position: absolute;
+    top: 18px;
+    right: 4vw;
+  }
+
+  #account-buttons {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=styles.css.map */
