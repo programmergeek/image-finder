@@ -13,12 +13,12 @@ interface Fields {
 }
 
 export const NavBar: React.FC<Props> = ({ ...props }: Props) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { register, handleSubmit } = useForm<Fields>();
+  const [, setSearchTerm] = useState("");
+  const { register, handleSubmit, watch } = useForm<Fields>();
 
   const handleChange: SubmitHandler<Fields> = (data) => {
-    setSearchTerm(data.input);
-    if (props.onChange) props.onChange(searchTerm);
+    setSearchTerm(watch("input"));
+    if (props.onChange) props.onChange(data.input);
   };
 
   return (
@@ -29,7 +29,13 @@ export const NavBar: React.FC<Props> = ({ ...props }: Props) => {
         <TertiaryButton>Discover</TertiaryButton>
       </div>
       <div id="search-bar">
-        <form onSubmit={handleSubmit(handleChange)}>
+        <form
+          onSubmit={handleSubmit(handleChange)}
+          onChange={() => {
+            setSearchTerm(watch("input"));
+            if (props.onChange) props.onChange(watch("input"));
+          }}
+        >
           <SearchBar
             id="nav-search"
             placeholder="Search..."
