@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  IconButton,
-  PrimaryButton,
-  SearchBar,
-  SecondaryButton,
-  TertiaryButton,
-} from "..";
+import { IconButton, SearchBar, TertiaryButton } from "..";
 import "./styles.css";
 import search from "./../../assets/Images/search.png";
 
@@ -23,10 +17,6 @@ export const NavBar: React.FC = () => {
           {" "}
           <img src={search} alt="" height="20px" width="20px" />{" "}
         </IconButton>
-      </div>
-      <div id="account-buttons">
-        <PrimaryButton>Login</PrimaryButton>
-        <SecondaryButton>Sign Up</SecondaryButton>
       </div>
     </div>
   );
