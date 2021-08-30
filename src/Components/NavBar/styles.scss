@@ -26,6 +26,17 @@
     outline: none;
 }
 
+@media screen and (min-width: 600px) and (max-width:1000px) {
+
+    #nav-search{
+        width: 40vw;
+    }
+    
+    #search-button{
+        right: 7.2vw;
+    }
+}
+
 @media screen and (max-width: 500px) {
 
     #nav-bar{
