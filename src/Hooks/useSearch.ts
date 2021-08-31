@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 interface Props {
   endpoint: string;
   query: string;
+  page?: number;
 }
 
 export const useSearch = (params: Props) => {
@@ -19,7 +20,7 @@ export const useSearch = (params: Props) => {
       url: params.endpoint,
       params: {
         query: query,
-        page: 1,
+        page: params.page ? params.page : 1,
         per_page: 30,
         client_id: "CwzsxgVaUemIgH7gJ2ARE5QES6QqYuKAeBRTkMtQWC0",
       },
