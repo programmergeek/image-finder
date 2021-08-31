@@ -18,9 +18,9 @@
 }
 
 #search-button{
-    position: absolute;
-    top: 19px;
-    right: 9.5vw;
+    position: relative;
+    top: 3.5px;
+    right: 50px;
 }
 
 #page-button{
@@ -47,9 +47,6 @@
         width: 40vw;
     }
     
-    #search-button{
-        right: 7.2vw;
-    }
 }
 
 @media screen and (max-width: 500px) {

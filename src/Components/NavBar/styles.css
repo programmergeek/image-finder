@@ -9,9 +9,9 @@
 }
 
 #search-button {
-  position: absolute;
-  top: 19px;
-  right: 9.5vw;
+  position: relative;
+  top: 3.5px;
+  right: 50px;
 }
 
 #page-button {
@@ -35,10 +35,6 @@
 @media screen and (min-width: 600px) and (max-width: 1000px) {
   #nav-search {
     width: 40vw;
-  }
-
-  #search-button {
-    right: 7.2vw;
   }
 }
 @media screen and (max-width: 500px) {
