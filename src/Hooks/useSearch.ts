@@ -12,8 +12,10 @@ export const useSearch = (params: Props) => {
   const [data, setData] = useState<AxiosResponse>({} as AxiosResponse);
   const [query, setQuery] = useState(params.query);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     axios({
       method: "get",
       baseURL: "https://api.unsplash.com/",
@@ -27,7 +29,7 @@ export const useSearch = (params: Props) => {
     })
       .then((res) => {
         setData(res);
-        console.log("Present");
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -35,5 +37,5 @@ export const useSearch = (params: Props) => {
       });
   }, [query]);
 
-  return { data, setQuery, errorMessage };
+  return { data, setQuery, errorMessage, isLoading };
 };
