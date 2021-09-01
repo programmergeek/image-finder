@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import { NavBar } from "./Components";
+import { Search } from "./Pages";
 
 const App: React.FC = () => {
   return (
     <div>
-      <NavBar />
+      <Search />
     </div>
   );
 };

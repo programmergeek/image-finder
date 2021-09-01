@@ -29,8 +29,8 @@ const processData = (data: AxiosResponse) => {
 export const Search: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, setQuery, errorMessage } = useSearch({
-    endpoint: "search/photo",
-    query: "",
+    endpoint: "search/photos",
+    query: "apple",
     page: currentPage,
   });
 
