@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavBar } from "../../Components";
 import { useSearch } from "../../Hooks";
 import "./styles.css";
@@ -13,8 +13,8 @@ interface ProcessedData {
 }
 
 const processData = (data: AxiosResponse) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const processedData: ProcessedData = data.data.results.map(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (photo: Record<string, any>) => {
       return {
         id: photo.id,
@@ -28,11 +28,19 @@ const processData = (data: AxiosResponse) => {
 
 export const Search: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { data, setQuery, errorMessage } = useSearch({
+  const [photos, setPhotos] = useState<ProcessedData>();
+  const { data, setQuery, isLoading } = useSearch({
     endpoint: "search/photos",
-    query: "apple",
+    query: "people",
     page: currentPage,
   });
+
+  useEffect(() => {
+    if (isLoading === false) {
+      setPhotos(() => processData(data));
+      console.log(photos);
+    }
+  }, [data, isLoading]);
 
   return <div></div>;
 };
