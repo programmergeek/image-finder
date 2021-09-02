@@ -27,7 +27,7 @@ export const NavBar: React.FC<Props> = ({ ...props }: Props) => {
   });
 
   return (
-    <div id="nav-bar">
+    <div id="nav-bar" style={{ background: "white" }}>
       <div id="page-button">
         <TertiaryButton>Home</TertiaryButton>
         <TertiaryButton>About</TertiaryButton>
