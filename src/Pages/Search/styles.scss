@@ -9,13 +9,16 @@
     display: -ms-flexbox; /* Not needed if autoprefixing */
     display: flex;
     width: auto;
+    padding-top: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 .masonry-col {
   background-clip: padding-box;
   }
 
 .images{
-    width: 338px;
+    width: 332px;
     border-radius: 5px;
     animation: imageMouseLeave 100ms linear forwards;
     cursor: pointer;
