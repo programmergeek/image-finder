@@ -13,7 +13,8 @@ interface ProcessedData {
 }
 
 const processData = (data: AxiosResponse) => {
-  const processedData: ProcessedData = data.data.results.map(
+  const processedData = {} as ProcessedData;
+  processedData.photos = data.data.results.map(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (photo: Record<string, any>) => {
       return {
@@ -26,23 +27,11 @@ const processData = (data: AxiosResponse) => {
   return processedData;
 };
 
-const Images = (photos: ProcessedData) => {
-  const output = photos.photos.map((photo) => {
-    return (
-      <img
-        className="photos"
-        src={photo.photoUrl}
-        alt={photo.description}
-        key={photo.id}
-      />
-    );
-  });
-  return output;
-};
-
 export const Search: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [photos, setPhotos] = useState<ProcessedData>();
+  const [currentPage] = useState(1);
+  const [photos, setPhotos] = useState<ProcessedData>({
+    photos: [],
+  } as ProcessedData);
   const { data, setQuery, isLoading } = useSearch({
     endpoint: "search/photos",
     query: "people",
@@ -58,7 +47,19 @@ export const Search: React.FC = () => {
   return (
     <div>
       <NavBar onChange={(input) => setQuery(input)} />
-      <pre> {JSON.stringify(photos)} </pre>
+      <div className="images">
+        {!isLoading &&
+          photos.photos.map((photo) => {
+            return (
+              <img
+                className="images"
+                key={photo.id}
+                src={photo.photoUrl}
+                alt={photo.description}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 };
