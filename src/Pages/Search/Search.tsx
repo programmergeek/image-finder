@@ -47,7 +47,10 @@ export const Search: React.FC = () => {
 
   return (
     <div>
-      <NavBar onChange={(input) => setQuery(input)} />
+      <div id="nav">
+        <NavBar onChange={(input) => setQuery(input)} />
+      </div>
+
       <Masonry
         breakpointCols={{
           default: 4,
