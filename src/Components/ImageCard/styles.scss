@@ -1,0 +1,46 @@
+.image-card-container{
+    margin-bottom: 10px;
+    background-color: antiquewhite;
+    border-radius: 0 0 5px 5px;
+    width: fit-content;
+}
+
+.image{
+    width: 24vw;
+    border-radius: 5px;
+    animation: imageMouseLeave 100ms linear forwards;
+    cursor: pointer;
+  }
+
+.photo-info{
+
+    display: grid;
+    grid-template-columns: 50px auto;
+    align-items: center;
+    padding-left: 5px;
+
+    .profile-image{
+        border-radius: 20px;
+    }
+}
+
+@media screen and (max-width:1200px) and (min-width: 950px) {
+    .image{
+      width: 32vw;
+    }
+  }
+  @media screen and (max-width:950px) and (min-width: 650px) {
+    .image{
+      width: 47.2vw;
+    }
+  }
+  @media screen and (max-width:650px) and (min-width: 500px) {
+    .image{
+      width: 46.8vw;
+    }
+  }
+  @media screen and (max-width:499px) {
+    .image{
+      width: 95vw;
+    }
+  }
