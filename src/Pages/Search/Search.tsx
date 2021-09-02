@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
-import { NavBar } from "../../Components";
+import { ImageCard, NavBar } from "../../Components";
 import { useSearch } from "../../Hooks";
 import "./styles.css";
 
@@ -10,6 +10,8 @@ interface ProcessedData {
     id: string;
     description: string;
     photoUrl: string;
+    username: string;
+    profileImage: string;
   }[];
 }
 
@@ -22,6 +24,8 @@ const processData = (data: AxiosResponse) => {
         id: photo.id,
         description: photo.description,
         photoUrl: photo.urls.regular,
+        username: photo.user.username,
+        profileImage: photo.user.profile_image.small,
       };
     }
   );
@@ -65,11 +69,12 @@ export const Search: React.FC = () => {
           photos.photos.map((photo) => {
             console.log(photo.photoUrl);
             return (
-              <img
-                className="images"
+              <ImageCard
                 key={photo.id}
                 src={photo.photoUrl}
                 alt={photo.description}
+                username={photo.username}
+                profileImage={photo.profileImage}
               />
             );
           })}
