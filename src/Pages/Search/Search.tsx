@@ -38,9 +38,13 @@ export const Search: React.FC = () => {
   useEffect(() => {
     if (isLoading === false) {
       setPhotos(() => processData(data));
-      console.log(photos);
     }
   }, [data, isLoading]);
 
-  return <div></div>;
+  return (
+    <div>
+      <NavBar onChange={(input) => setQuery(input)} />
+      <pre> {JSON.stringify(photos)} </pre>
+    </div>
+  );
 };
