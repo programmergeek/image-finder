@@ -54,8 +54,8 @@ export const Search: React.FC = () => {
       <Masonry
         breakpointCols={{
           default: 4,
-          1100: 3,
-          700: 2,
+          1200: 3,
+          950: 2,
           500: 1,
         }}
         className="masonry"

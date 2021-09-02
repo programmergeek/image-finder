@@ -1,3 +1,4 @@
+/*default values*/
 #nav{
   position: fixed;
   z-index:1000;
@@ -18,7 +19,7 @@
   }
 
 .images{
-    width: 332px;
+    width: 24.2vw;
     border-radius: 5px;
     animation: imageMouseLeave 100ms linear forwards;
     cursor: pointer;
@@ -36,6 +37,7 @@
   ;
   }
 
+/* animations */
 @keyframes imageHover {
     from{
           
@@ -54,4 +56,26 @@
   to{
     transform: scale(1);
   }    
+  }
+
+/* media tags*/
+  @media screen and (max-width:1200px) and (min-width: 950px) {
+    .images{
+      width: 32vw;
+    }
+  }
+  @media screen and (max-width:950px) and (min-width: 650px) {
+    .images{
+      width: 47.2vw;
+    }
+  }
+  @media screen and (max-width:650px) and (min-width: 500px) {
+    .images{
+      width: 46.8vw;
+    }
+  }
+  @media screen and (max-width:500px) {
+    .images{
+      width: 95vw;
+    }
   }
