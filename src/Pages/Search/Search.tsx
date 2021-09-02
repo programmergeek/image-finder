@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
+import Masonry from "react-masonry-css";
 import { NavBar } from "../../Components";
 import { useSearch } from "../../Hooks";
 import "./styles.css";
@@ -47,9 +48,19 @@ export const Search: React.FC = () => {
   return (
     <div>
       <NavBar onChange={(input) => setQuery(input)} />
-      <div className="images">
+      <Masonry
+        breakpointCols={{
+          default: 4,
+          1100: 3,
+          700: 2,
+          500: 1,
+        }}
+        className="masonry"
+        columnClassName="masonry-col"
+      >
         {!isLoading &&
           photos.photos.map((photo) => {
+            console.log(photo.photoUrl);
             return (
               <img
                 className="images"
@@ -59,7 +70,8 @@ export const Search: React.FC = () => {
               />
             );
           })}
-      </div>
+      </Masonry>
+      {isLoading && <h5 style={{ textAlign: "center" }}>Loading...</h5>}
     </div>
   );
 };
