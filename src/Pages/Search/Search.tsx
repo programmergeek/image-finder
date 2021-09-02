@@ -26,6 +26,20 @@ const processData = (data: AxiosResponse) => {
   return processedData;
 };
 
+const Images = (photos: ProcessedData) => {
+  const output = photos.photos.map((photo) => {
+    return (
+      <img
+        className="photos"
+        src={photo.photoUrl}
+        alt={photo.description}
+        key={photo.id}
+      />
+    );
+  });
+  return output;
+};
+
 export const Search: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [photos, setPhotos] = useState<ProcessedData>();
