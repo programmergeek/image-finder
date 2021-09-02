@@ -16,25 +16,27 @@ export const useSearch = (params: Props) => {
 
   useEffect(() => {
     setIsLoading(true);
-    axios({
-      method: "get",
-      baseURL: "https://api.unsplash.com/",
-      url: params.endpoint,
-      params: {
-        query: query,
-        page: params.page ? params.page : 1,
-        per_page: 30,
-        client_id: "CwzsxgVaUemIgH7gJ2ARE5QES6QqYuKAeBRTkMtQWC0",
-      },
-    })
-      .then((res) => {
-        setData(res);
-        setIsLoading(false);
+    setTimeout(() => {
+      axios({
+        method: "get",
+        baseURL: "https://api.unsplash.com/",
+        url: params.endpoint,
+        params: {
+          query: query,
+          page: params.page ? params.page : 1,
+          per_page: 30,
+          client_id: "CwzsxgVaUemIgH7gJ2ARE5QES6QqYuKAeBRTkMtQWC0",
+        },
       })
-      .catch((error) => {
-        console.log(error);
-        setErrorMessage(error);
-      });
+        .then((res) => {
+          setData(res);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+          setErrorMessage(error);
+        });
+    }, 500);
   }, [query]);
 
   return { data, setQuery, errorMessage, isLoading };
