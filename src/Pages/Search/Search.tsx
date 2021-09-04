@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Masonry from "react-masonry-css";
 import { ImageCard, NavBar } from "../../Components";
 import { useSearch } from "../../Hooks";
@@ -33,7 +33,15 @@ const processData = (data: AxiosResponse) => {
 };
 
 export const Search: React.FC = () => {
-  const [currentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const bottomPage = useRef<HTMLElement | null>();
+  const observer = useCallback((node) => {
+    new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        console.log("meep");
+      }
+    }).observe(node);
+  }, []);
   const [photos, setPhotos] = useState<ProcessedData>({
     photos: [],
   } as ProcessedData);
@@ -48,6 +56,12 @@ export const Search: React.FC = () => {
       setPhotos(() => processData(data));
     }
   }, [data, isLoading]);
+
+  useEffect(() => {
+    if (bottomPage.current) {
+      observer(bottomPage.current);
+    }
+  });
 
   return (
     <div>
@@ -80,6 +94,10 @@ export const Search: React.FC = () => {
           })}
       </Masonry>
       {isLoading && <h5 style={{ textAlign: "center" }}>Loading...</h5>}
+      <div
+        ref={observer}
+        style={{ width: "90%", height: 30, border: "1px solid black" }}
+      ></div>
     </div>
   );
 };
