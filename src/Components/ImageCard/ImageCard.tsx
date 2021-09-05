@@ -6,7 +6,7 @@ interface Props {
   alt: string;
   username: string;
   profileImage: string;
-  key: string;
+  key?: string;
 }
 
 export const ImageCard: React.FC<Props> = ({ ...props }: Props) => {
