@@ -13,7 +13,6 @@ export const useSearch = (params: Props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -30,8 +29,15 @@ export const useSearch = (params: Props) => {
         },
       })
         .then((res) => {
-          setData(res);
-          setTotalPages(res.data.total_pages);
+          if (res.data.total_pages < currentPage) {
+            setData({
+              data: {
+                results: [],
+              },
+            } as AxiosResponse);
+          } else {
+            setData(res);
+          }
           setIsLoading(false);
         })
         .catch((error) => {
@@ -48,6 +54,5 @@ export const useSearch = (params: Props) => {
     errorMessage,
     isLoading,
     setCurrentPage,
-    totalPages,
   };
 };
