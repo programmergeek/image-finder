@@ -36,10 +36,31 @@ export const Search: React.FC = () => {
   const [photos, setPhotos] = useState<ProcessedData>({
     photos: [],
   } as ProcessedData);
-  const { data, setQuery, isLoading } = useSearch({
+  const { data, setQuery, isLoading, setCurrentPage } = useSearch({
     endpoint: "search/photos",
     query: "people",
   });
+
+  const observer = useRef<IntersectionObserver | null>(null);
+  const observerCallback = useCallback(
+    (node) => {
+      if (isLoading) return;
+      console.log(observer);
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entities) => {
+        if (entities[0].isIntersecting) {
+          setCurrentPage((current) => {
+            const next = current + 1;
+            return next;
+          });
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [observer, isLoading]
+  );
 
   useEffect(() => {
     if (isLoading === false) {
@@ -69,7 +90,7 @@ export const Search: React.FC = () => {
           photos.photos.map((photo, index) => {
             if (index + 1 === photos.photos.length)
               return (
-                <div key={photo.id}>
+                <div ref={observerCallback} key={photo.id}>
                   <ImageCard
                     src={photo.photoUrl}
                     alt={photo.description}
