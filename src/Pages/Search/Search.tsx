@@ -38,7 +38,7 @@ export const Search: React.FC = () => {
   const [photos, setPhotos] = useState<ProcessedData>({
     photos: [],
   } as ProcessedData);
-  const { data, setQuery, isLoading, setCurrentPage } = useSearch({
+  const { data, setQuery, isLoading, setCurrentPage, query } = useSearch({
     endpoint: "search/photos",
     query: "people",
   });
@@ -63,6 +63,11 @@ export const Search: React.FC = () => {
     },
     [observer, isLoading]
   );
+
+  useEffect(() => {
+    setPhotos({ photos: [] });
+    setCurrentPage(1);
+  }, [query]);
 
   useEffect(() => {
     if (isLoading === false) {

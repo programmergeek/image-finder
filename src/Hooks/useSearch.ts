@@ -54,5 +54,6 @@ export const useSearch = (params: Props) => {
     errorMessage,
     isLoading,
     setCurrentPage,
+    query,
   };
 };
