@@ -5,14 +5,16 @@ import { ImageCard, NavBar } from "../../Components";
 import { useSearch } from "../../Hooks";
 import "./styles.css";
 
+interface Photos {
+  id: string;
+  description: string;
+  photoUrl: string;
+  username: string;
+  profileImage: string;
+}
+
 interface ProcessedData {
-  photos: {
-    id: string;
-    description: string;
-    photoUrl: string;
-    username: string;
-    profileImage: string;
-  }[];
+  photos: Photos[];
 }
 
 const processData = (data: AxiosResponse) => {
@@ -64,7 +66,12 @@ export const Search: React.FC = () => {
 
   useEffect(() => {
     if (isLoading === false) {
-      setPhotos(() => processData(data));
+      setPhotos((currentState) => {
+        const currentDataArray = processData(data).photos;
+        const prevDataArray = currentState.photos;
+        const outputArray = prevDataArray.concat(currentDataArray);
+        return { photos: outputArray };
+      });
     }
   }, [data, isLoading]);
 
@@ -86,31 +93,30 @@ export const Search: React.FC = () => {
         className="masonry"
         columnClassName="masonry-col"
       >
-        {!isLoading &&
-          photos.photos.map((photo, index) => {
-            if (index + 1 === photos.photos.length)
-              return (
-                <div ref={observerCallback} key={photo.id}>
-                  <ImageCard
-                    src={photo.photoUrl}
-                    alt={photo.description}
-                    username={photo.username}
-                    profileImage={photo.profileImage}
-                  />
-                </div>
-              );
-            else {
-              return (
+        {photos.photos.map((photo, index) => {
+          if (index + 1 === photos.photos.length)
+            return (
+              <div ref={observerCallback} key={photo.id}>
                 <ImageCard
-                  key={photo.id}
                   src={photo.photoUrl}
                   alt={photo.description}
                   username={photo.username}
                   profileImage={photo.profileImage}
                 />
-              );
-            }
-          })}
+              </div>
+            );
+          else {
+            return (
+              <ImageCard
+                key={photo.id}
+                src={photo.photoUrl}
+                alt={photo.description}
+                username={photo.username}
+                profileImage={photo.profileImage}
+              />
+            );
+          }
+        })}
       </Masonry>
       {isLoading && <h5 style={{ textAlign: "center" }}>Loading...</h5>}
     </div>
