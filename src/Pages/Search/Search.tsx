@@ -33,22 +33,12 @@ const processData = (data: AxiosResponse) => {
 };
 
 export const Search: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const bottomPage = useRef<HTMLElement | null>();
-  const observer = useCallback((node) => {
-    new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        console.log("meep");
-      }
-    }).observe(node);
-  }, []);
   const [photos, setPhotos] = useState<ProcessedData>({
     photos: [],
   } as ProcessedData);
   const { data, setQuery, isLoading } = useSearch({
     endpoint: "search/photos",
     query: "people",
-    page: currentPage,
   });
 
   useEffect(() => {
@@ -57,16 +47,12 @@ export const Search: React.FC = () => {
     }
   }, [data, isLoading]);
 
-  useEffect(() => {
-    if (bottomPage.current) {
-      observer(bottomPage.current);
-    }
-  });
-
   return (
     <div>
       <div id="nav">
-        <NavBar onChange={(input) => setQuery(input)} />
+        <NavBar
+          onChange={(input) => setQuery(input.length > 0 ? input : "people")}
+        />
       </div>
 
       <Masonry
@@ -80,24 +66,32 @@ export const Search: React.FC = () => {
         columnClassName="masonry-col"
       >
         {!isLoading &&
-          photos.photos.map((photo) => {
-            console.log(photo.photoUrl);
-            return (
-              <ImageCard
-                key={photo.id}
-                src={photo.photoUrl}
-                alt={photo.description}
-                username={photo.username}
-                profileImage={photo.profileImage}
-              />
-            );
+          photos.photos.map((photo, index) => {
+            if (index + 1 === photos.photos.length)
+              return (
+                <div key={photo.id}>
+                  <ImageCard
+                    src={photo.photoUrl}
+                    alt={photo.description}
+                    username={photo.username}
+                    profileImage={photo.profileImage}
+                  />
+                </div>
+              );
+            else {
+              return (
+                <ImageCard
+                  key={photo.id}
+                  src={photo.photoUrl}
+                  alt={photo.description}
+                  username={photo.username}
+                  profileImage={photo.profileImage}
+                />
+              );
+            }
           })}
       </Masonry>
       {isLoading && <h5 style={{ textAlign: "center" }}>Loading...</h5>}
-      <div
-        ref={observer}
-        style={{ width: "90%", height: 30, border: "1px solid black" }}
-      ></div>
     </div>
   );
 };

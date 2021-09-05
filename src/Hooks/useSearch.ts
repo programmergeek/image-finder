@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 interface Props {
   endpoint: string;
   query: string;
-  page?: number;
 }
 
 export const useSearch = (params: Props) => {
@@ -13,6 +12,7 @@ export const useSearch = (params: Props) => {
   const [query, setQuery] = useState(params.query);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
@@ -23,7 +23,7 @@ export const useSearch = (params: Props) => {
         url: params.endpoint,
         params: {
           query: query,
-          page: params.page ? params.page : 1,
+          page: currentPage,
           per_page: 30,
           client_id: "CwzsxgVaUemIgH7gJ2ARE5QES6QqYuKAeBRTkMtQWC0",
         },
@@ -37,7 +37,14 @@ export const useSearch = (params: Props) => {
           setErrorMessage(error);
         });
     }, 500);
-  }, [query]);
+  }, [query, currentPage]);
+  console.log(currentPage);
 
-  return { data, setQuery, errorMessage, isLoading };
+  return {
+    data,
+    setQuery,
+    errorMessage,
+    isLoading,
+    setCurrentPage,
+  };
 };
