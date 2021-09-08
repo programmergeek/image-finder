@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import { Search } from "./Pages";
+import { TextField } from "./Components";
 
 const App: React.FC = () => {
   return (
     <div>
-      <Search />
+      <TextField />
     </div>
   );
 };

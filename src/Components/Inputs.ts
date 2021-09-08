@@ -16,5 +16,6 @@ export const SearchBar = styled(Input)`
 export const TextField = styled(Input)`
   border: 2px solid black;
   border-radius: 3px;
-  padding: 10px;
+  padding: 5px;
+  height: 38px;
 `;
