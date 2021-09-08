@@ -1,3 +1,84 @@
+.form-container {
+  display: grid;
+  grid-template-columns: 42vw auto;
+  align-items: flex-start;
+}
+.form-container .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.form-container .page-art {
+  height: 99.7vh;
+  background: url("./../../assets/Images/authPageArt-Desktop.svg") right;
+}
+.form-container .auth-header {
+  font-size: 64px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 37.5vw;
+}
+.form-container .field {
+  display: flex;
+  flex-direction: column;
+  max-width: 37.5vw;
+  margin-bottom: 15px;
+}
+.form-container .input-field {
+  outline: none;
+}
+.form-container #name {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px;
+  width: 37.5vw;
+}
+.form-container .sub-field {
+  max-width: 20vw;
+}
+.form-container .muted {
+  color: #757575;
+}
+.form-container .media-icon {
+  width: 50px;
+  height: 50px;
+}
+.form-container .primary-form-btn {
+  width: 37.5vw;
+  font-size: 24px;
+  height: 60px;
+  border-radius: 3px;
+}
+.form-container .social-media-auth {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  gap: 50px;
+}
+.form-container .form > p {
+  text-align: center;
+  margin: 0;
+  margin-bottom: 5px;
+}
+.form-container .media {
+  border: none;
+}
 
+@media screen and (min-width: 1440px) {
+  .form-container {
+    grid-template-columns: 35vw auto;
+    align-items: center;
+  }
+
+  .form {
+    justify-content: center;
+    width: max-content;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-65%, -50%);
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */
