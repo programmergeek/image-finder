@@ -2,11 +2,17 @@
   display: grid;
   grid-template-columns: 42vw auto;
   align-items: flex-start;
+  width: fit-content;
 }
 .form-container .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-75%, -50%);
 }
 .form-container .page-art {
   height: 99.7vh;
@@ -73,7 +79,6 @@
 
   .form {
     justify-content: center;
-    width: max-content;
     position: absolute;
     top: 50%;
     left: 65%;
