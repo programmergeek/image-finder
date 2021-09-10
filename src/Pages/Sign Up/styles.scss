@@ -1,13 +1,11 @@
 .form-container{
     display: grid;
-    grid-template-columns: 42vw auto;
     align-items: flex-start;
     width: fit-content;
 
     .form{
         display: flex;
         flex-direction: column;
-        justify-content: center;
         justify-content: center;
         position: absolute;
         top: 50%;
@@ -17,7 +15,6 @@
 
     .page-art{
         height: 99.7vh;
-        background: url('./../../assets/Images/authPageArt-Desktop.svg') right ;
     }
 
     .auth-header{
@@ -40,14 +37,11 @@
     }
 
     #name{
-        display:  grid;
-        grid-template-columns: auto auto;
-        gap: 5px;
-        width: 37.5vw;
+        display: flex;
     }
 
     .sub-field{
-        max-width: 20vw;
+        width: 17.9vw;
     }
 
     .muted{
@@ -83,6 +77,9 @@
         border: none;
     }
     
+    .gap{
+        margin-right: 25px;
+    }
 }
 
 @media screen and (min-width: 1440px) {
@@ -100,4 +97,23 @@
     }
 
 
+}
+
+@media screen and (max-width:1200px ) and (min-width: 800px) {
+
+    .form-container{
+        #name{
+            flex-direction: column;
+        }
+
+        .sub-field{
+            width: 37.5vw;
+        }
+
+        .form{
+            left: 50%;
+            top: 30px;
+            transform: translate(0%, 0%);
+        }
+    }
 }

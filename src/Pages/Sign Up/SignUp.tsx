@@ -9,6 +9,7 @@ import {
 import facebook from "./../../assets/Images/facebook.png";
 import google from "./../../assets/Images/google.png";
 import twitter from "./../../assets/Images/twitter.png";
+import art from "./../../assets/Images/authPageArt-Desktop.svg";
 import "./styles.css";
 
 interface Fields {
@@ -28,12 +29,14 @@ export const SignUp: React.FC = () => {
 
   return (
     <div className="form-container">
-      <div className="page-art"></div>
+      <div className="page-art">
+        <img className="page-art desktop" src={art} alt="page Art" />
+      </div>
       <div className="form">
         <p className="auth-header">Sign Up</p>
         <form>
           <div id="name">
-            <div className="field sub-field">
+            <div className="field sub-field gap">
               <label>First Name</label>
               <TextField
                 className="input-field"
