@@ -17,6 +17,10 @@
         height: 99.7vh;
     }
 
+    .mobile{
+        display: none;
+    }
+
     .auth-header{
         font-size: 64px;
         margin: 0;
@@ -75,6 +79,7 @@
 
     .media{
         border: none;
+        background-color: transparent;
     }
     
     .gap{
@@ -114,6 +119,51 @@
             left: 50%;
             top: 30px;
             transform: translate(0%, 0%);
+        }
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 400px) {
+    .form-container{
+        .page-art{
+            display: grid;
+            grid-template-columns: auto;
+            align-items: flex-end;
+            justify-content: end;
+        }
+
+        .desktop{
+            display: none;
+        }
+
+        .mobile{
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .auth-header{
+            width: 70vw;
+            text-align: center;
+        }
+
+        .form{
+            width: 70vw;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .field{
+            max-width: 70vw;
+        }
+
+        .sub-field{
+            width: 33vw;
+        }
+
+        .primary-form-btn{
+            width: 70vw;
         }
     }
 }

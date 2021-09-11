@@ -15,6 +15,9 @@
 .form-container .page-art {
   height: 99.7vh;
 }
+.form-container .mobile {
+  display: none;
+}
 .form-container .auth-header {
   font-size: 64px;
   margin: 0;
@@ -63,6 +66,7 @@
 }
 .form-container .media {
   border: none;
+  background-color: transparent;
 }
 .form-container .gap {
   margin-right: 25px;
@@ -93,6 +97,41 @@
     left: 50%;
     top: 30px;
     transform: translate(0%, 0%);
+  }
+}
+@media screen and (max-width: 800px) and (min-width: 400px) {
+  .form-container .page-art {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: flex-end;
+    justify-content: end;
+  }
+  .form-container .desktop {
+    display: none;
+  }
+  .form-container .mobile {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
+  .form-container .auth-header {
+    width: 70vw;
+    text-align: center;
+  }
+  .form-container .form {
+    width: 70vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .form-container .field {
+    max-width: 70vw;
+  }
+  .form-container .sub-field {
+    width: 33vw;
+  }
+  .form-container .primary-form-btn {
+    width: 70vw;
   }
 }
 
