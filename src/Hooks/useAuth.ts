@@ -67,11 +67,29 @@ const emailAuth = (
   }
 };
 
+const googleAuth = (
+  firebaseApp: FirebaseApp,
+  setUID: (value: string) => void,
+  setError: (error: Record<string, unknown>) => void
+) => {
+  const auth = getAuth(firebaseApp);
+  const provider = new GoogleAuthProvider();
+  signInWithRedirect(auth, provider);
+  getRedirectResult(auth)
+    .then((res) => {
+      if (res) setUID(res.user.uid);
+    })
+    .catch((error) => {
+      const errorCode: string = error.code;
+      const errorMessage: string = error.message;
+      setError({
+        errorCode,
+        errorMessage,
+      });
+    });
+};
+
 export const useAuth = (props: Props) => {
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const google = new GoogleAuthProvider();
-  const facebook = new FacebookAuthProvider();
-  const twitter = new TwitterAuthProvider();
   return;
 };
