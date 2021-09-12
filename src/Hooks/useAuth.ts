@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { initializeApp } from "firebase/app";
+import { FirebaseApp, initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithRedirect,
@@ -27,7 +27,47 @@ const firebaseConfig = {
   measurementId: "G-BT84WDZY2C",
 };
 
-export const useAuth = () => {
+const emailAuth = (
+  type: "signUp" | "login",
+  email: string,
+  password: string,
+  firebaseApp: FirebaseApp,
+  setUID: (val: string) => void,
+  setError: (value: Record<string, unknown>) => void
+) => {
+  const auth = getAuth(firebaseApp);
+  switch (type) {
+    case "signUp":
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCred) => {
+          setUID(userCred.user.uid);
+        })
+        .catch((error) => {
+          const errorCode: string = error.code;
+          const errorMessage: string = error.message;
+          setError({
+            errorCode,
+            errorMessage,
+          });
+        });
+      break;
+    case "login":
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCred) => {
+          setUID(userCred.user.uid);
+        })
+        .catch((error) => {
+          const errorCode: string = error.code;
+          const errorMessage: string = error.message;
+          setError({
+            errorCode,
+            errorMessage,
+          });
+        });
+  }
+};
+
+export const useAuth = (props: Props) => {
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const google = new GoogleAuthProvider();
