@@ -19,7 +19,6 @@ import google from "./../../assets/Images/google.png";
 import twitter from "./../../assets/Images/twitter.png";
 import desktopArt from "./../../assets/Images/authPageArt-Desktop.svg";
 import mobileArt from "./../../assets/Images/authPageArt-mobile.svg";
-import "./styles.css";
 
 interface Fields {
   firstName: string;
@@ -86,53 +85,53 @@ export const SignUp: React.FC = () => {
   }, [googleAuth, twitterAuth]);
 
   return (
-    <div className="form-container">
-      <div className="page-art">
-        <img className="desktop" src={desktopArt} alt="page Art" />
-        <img className="mobile" src={mobileArt} alt="page Art" />
+    <div className="">
+      <div className="">
+        <img className="" src={desktopArt} alt="page Art" />
+        <img className="" src={mobileArt} alt="page Art" />
       </div>
-      <div className="form">
-        <p className="auth-header">Sign Up</p>
+      <div className="">
+        <p className="">Sign Up</p>
         <form onSubmit={handleSubmit(emailSignUp)}>
-          <div id="name">
-            <div className="field sub-field gap">
+          <div id="">
+            <div className="">
               <label>First Name</label>
               <TextField
-                className="input-field"
+                className=""
                 {...register("firstName", { required: true })}
               />
             </div>
             <div className="field sub-field">
               <label>Last Name</label>
               <TextField
-                className="input-field"
+                className=""
                 {...register("lastName", { required: true })}
               />
             </div>
           </div>
-          <div className="field">
+          <div className="">
             <label>Username</label>
             <TextField
-              className="input-field"
+              className=""
               {...register("username", { required: true })}
             />
           </div>
-          <div className="field">
+          <div className="">
             <label>Email</label>
             <TextField
-              className="input-field"
+              className=""
               {...register("email", { required: true })}
             />
           </div>
-          <div className="field">
+          <div className="">
             <label>Password</label>
             <TextField
-              className="input-field"
+              className=""
               {...register("password", { required: true })}
               type="password"
             />
           </div>
-          <PrimaryButton type="submit" className="primary-form-btn">
+          <PrimaryButton type="submit" className="">
             Sign Up
           </PrimaryButton>
         </form>
