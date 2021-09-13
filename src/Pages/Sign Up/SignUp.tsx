@@ -1,5 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+} from "firebase/auth";
 import {
   TextField,
   PrimaryButton,
@@ -21,12 +28,47 @@ interface Fields {
   password: string;
 }
 
+const firebaseConfig = {
+  apiKey: "AIzaSyCYCfRvAiV1EoMDeNtjX-BFyQRxbGyUVoo",
+  authDomain: "image-finder-a72d0.firebaseapp.com",
+  projectId: "image-finder-a72d0",
+  storageBucket: "image-finder-a72d0.appspot.com",
+  messagingSenderId: "791569699170",
+  appId: "1:791569699170:web:cd195d773bb6d38f6d1c3b",
+  measurementId: "G-BT84WDZY2C",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+
 export const SignUp: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Fields>();
+  const [uid, setUID] = useState("");
+  const [error, setError] = useState<Record<string, string>>({});
+
+  const googleAuth = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+  };
+
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result) {
+          setUID(result.user.uid);
+        }
+      })
+      .catch((error) => {
+        setError({
+          errorCode: error.code,
+          errorMessage: error.message,
+        });
+      });
+  });
 
   return (
     <div className="form-container">
@@ -82,7 +124,7 @@ export const SignUp: React.FC = () => {
         <TertiaryButton>Login</TertiaryButton>
         <p className="muted">Sign up with</p>
         <div className="social-media-auth">
-          <IconButton className="media">
+          <IconButton className="media" onClick={() => googleAuth()}>
             <img src={google} alt="google" className="media-icon" />
           </IconButton>
           <IconButton className="media">
