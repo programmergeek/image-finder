@@ -1,14 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  TwitterAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
-} from "firebase/auth";
+import { googleAuth, twitterAuth, signUpWithEmail } from "../../Functions";
 import {
   TextField,
   PrimaryButton,
@@ -28,61 +20,18 @@ interface Fields {
   password: string;
 }
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCYCfRvAiV1EoMDeNtjX-BFyQRxbGyUVoo",
-  authDomain: "image-finder-a72d0.firebaseapp.com",
-  projectId: "image-finder-a72d0",
-  storageBucket: "image-finder-a72d0.appspot.com",
-  messagingSenderId: "791569699170",
-  appId: "1:791569699170:web:cd195d773bb6d38f6d1c3b",
-  measurementId: "G-BT84WDZY2C",
-};
-
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-
 export const SignUp: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Fields>();
-  const [uid, setUID] = useState("");
-  const [error, setError] = useState<Record<string, string>>({});
-
-  const googleAuth = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
-
-  const twitterAuth = () => {
-    const provider = new TwitterAuthProvider();
-    signInWithRedirect(auth, provider);
-  };
+  const { register, handleSubmit } = useForm<Fields>();
+  const [, setUID] = useState("");
+  //const [error, setError] = useState<Record<string, string>>({});
 
   const emailSignUp: SubmitHandler<Fields> = (data) => {
-    createUserWithEmailAndPassword(auth, data.email, data.password).then(
-      (userCred) => {
-        setUID(userCred.user.uid);
-        console.log(userCred.user.uid);
-      }
-    );
+    const emailAndPassword = {
+      email: data.email,
+      password: data.password,
+    };
+    signUpWithEmail(emailAndPassword, setUID);
   };
-
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        if (result) {
-          setUID(result.user.uid);
-        }
-      })
-      .catch((error) => {
-        setError({
-          errorCode: error.code,
-          errorMessage: error.message,
-        });
-      });
-  }, [googleAuth, twitterAuth]);
 
   return (
     <div className="">
