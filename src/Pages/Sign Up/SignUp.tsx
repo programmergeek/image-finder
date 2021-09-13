@@ -4,6 +4,8 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
+  FacebookAuthProvider,
+  TwitterAuthProvider,
   signInWithRedirect,
   getRedirectResult,
 } from "firebase/auth";
@@ -13,7 +15,6 @@ import {
   TertiaryButton,
   IconButton,
 } from "./../../Components";
-import facebook from "./../../assets/Images/facebook.png";
 import google from "./../../assets/Images/google.png";
 import twitter from "./../../assets/Images/twitter.png";
 import desktopArt from "./../../assets/Images/authPageArt-Desktop.svg";
@@ -52,6 +53,11 @@ export const SignUp: React.FC = () => {
 
   const googleAuth = () => {
     const provider = new GoogleAuthProvider();
+    signInWithRedirect(auth, provider);
+  };
+
+  const twitterAuth = () => {
+    const provider = new TwitterAuthProvider();
     signInWithRedirect(auth, provider);
   };
 
@@ -127,10 +133,7 @@ export const SignUp: React.FC = () => {
           <IconButton className="media" onClick={() => googleAuth()}>
             <img src={google} alt="google" className="media-icon" />
           </IconButton>
-          <IconButton className="media">
-            <img src={facebook} alt="facebook" className="media-icon" />
-          </IconButton>
-          <IconButton className="media">
+          <IconButton className="media" onClick={() => twitterAuth()}>
             <img src={twitter} alt="twitter" className="media-icon" />
           </IconButton>
         </div>
