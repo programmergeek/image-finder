@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
-  FacebookAuthProvider,
+  createUserWithEmailAndPassword,
   TwitterAuthProvider,
   signInWithRedirect,
   getRedirectResult,
@@ -61,6 +61,15 @@ export const SignUp: React.FC = () => {
     signInWithRedirect(auth, provider);
   };
 
+  const emailSignUp: SubmitHandler<Fields> = (data) => {
+    createUserWithEmailAndPassword(auth, data.email, data.password).then(
+      (userCred) => {
+        setUID(userCred.user.uid);
+        console.log(userCred.user.uid);
+      }
+    );
+  };
+
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {
@@ -74,7 +83,7 @@ export const SignUp: React.FC = () => {
           errorMessage: error.message,
         });
       });
-  });
+  }, [googleAuth, twitterAuth]);
 
   return (
     <div className="form-container">
@@ -84,7 +93,7 @@ export const SignUp: React.FC = () => {
       </div>
       <div className="form">
         <p className="auth-header">Sign Up</p>
-        <form>
+        <form onSubmit={handleSubmit(emailSignUp)}>
           <div id="name">
             <div className="field sub-field gap">
               <label>First Name</label>
