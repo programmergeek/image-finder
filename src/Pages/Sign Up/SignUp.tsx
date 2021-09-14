@@ -9,8 +9,6 @@ import {
 } from "./../../Components";
 import google from "./../../assets/Images/google.png";
 import twitter from "./../../assets/Images/twitter.png";
-import desktopArt from "./../../assets/Images/authPageArt-Desktop.svg";
-import mobileArt from "./../../assets/Images/authPageArt-mobile.svg";
 
 interface Fields {
   firstName: string;
@@ -34,65 +32,75 @@ export const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="">
-      <div className="">
-        <img className="" src={desktopArt} alt="page Art" />
-        <img className="" src={mobileArt} alt="page Art" />
-      </div>
-      <div className="">
-        <p className="">Sign Up</p>
-        <form onSubmit={handleSubmit(emailSignUp)}>
-          <div id="">
-            <div className="">
-              <label>First Name</label>
+    <div className="container-fluid">
+      <div className="row justify-content-center">
+        <div className="col-md-3 px-5 py-2 form-container">
+          <p className="h1 header text-center">Sign Up</p>
+          <form onSubmit={handleSubmit(emailSignUp)}>
+            <div className="mb-2">
+              <label className="form-label">First Name</label>
               <TextField
-                className=""
+                type="text"
+                className="form-control"
                 {...register("firstName", { required: true })}
               />
             </div>
-            <div className="field sub-field">
-              <label>Last Name</label>
+            <div className="mb-2">
+              <label className="form-label">Last Name</label>
               <TextField
-                className=""
+                type="text"
+                className="form-control"
                 {...register("lastName", { required: true })}
               />
             </div>
+            <div className="mb-2">
+              <label className="form-label">Username</label>
+              <TextField
+                className="form-control"
+                {...register("username", { required: true })}
+              />
+            </div>
+            <div className="mb-2">
+              <label className="form-label">Email</label>
+              <TextField
+                className="form-control"
+                {...register("email", { required: true })}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Password</label>
+              <TextField
+                className="form-control"
+                {...register("password", { required: true })}
+                type="password"
+              />
+            </div>
+            <PrimaryButton
+              type="submit"
+              className="form-btn mx-auto"
+              style={{ width: "100%" }}
+            >
+              Sign Up
+            </PrimaryButton>
+          </form>
+          <TertiaryButton className="form-btn" style={{ width: "100%" }}>
+            Login
+          </TertiaryButton>
+          <p className="text-muted text-center">Sign up with</p>
+          <div className="d-flex justify-content-center">
+            <div className="btn-group" role="group">
+              <div className="me-4">
+                <IconButton className="media" onClick={() => googleAuth()}>
+                  <img src={google} alt="google" className="media-icon" />
+                </IconButton>
+              </div>
+              <div className="">
+                <IconButton className="media" onClick={() => twitterAuth()}>
+                  <img src={twitter} alt="twitter" className="media-icon" />
+                </IconButton>
+              </div>
+            </div>
           </div>
-          <div className="">
-            <label>Username</label>
-            <TextField
-              className=""
-              {...register("username", { required: true })}
-            />
-          </div>
-          <div className="">
-            <label>Email</label>
-            <TextField
-              className=""
-              {...register("email", { required: true })}
-            />
-          </div>
-          <div className="">
-            <label>Password</label>
-            <TextField
-              className=""
-              {...register("password", { required: true })}
-              type="password"
-            />
-          </div>
-          <PrimaryButton type="submit" className="">
-            Sign Up
-          </PrimaryButton>
-        </form>
-        <TertiaryButton>Login</TertiaryButton>
-        <p className="muted">Sign up with</p>
-        <div className="social-media-auth">
-          <IconButton className="media" onClick={() => googleAuth()}>
-            <img src={google} alt="google" className="media-icon" />
-          </IconButton>
-          <IconButton className="media" onClick={() => twitterAuth()}>
-            <img src={twitter} alt="twitter" className="media-icon" />
-          </IconButton>
         </div>
       </div>
     </div>
