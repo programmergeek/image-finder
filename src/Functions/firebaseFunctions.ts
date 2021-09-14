@@ -32,11 +32,14 @@ export const twitterAuth = (): void => {
 
 export const signUpWithEmail = (
   data: Record<string, string>,
-  setUID: (value: string) => void
+  setUID: (value: string) => void,
+  setError: (value: Record<string, unknown>) => void
 ): void => {
-  createUserWithEmailAndPassword(auth, data.email, data.password).then(
-    (userCred) => {
+  createUserWithEmailAndPassword(auth, data.email, data.password)
+    .then((userCred) => {
       setUID(userCred.user.uid);
-    }
-  );
+    })
+    .catch((e) => {
+      setError({ hasError: true, errorCode: e.code, errorMessage: e.message });
+    });
 };
